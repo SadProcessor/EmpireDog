@@ -1,2 +1,2 @@
 # EmpireDog
-CypherDog + EmpireStrike + EmpireDog
+PowerEmpire + EmpireStrike + CypherDog + DogStrike
