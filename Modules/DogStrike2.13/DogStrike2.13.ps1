@@ -254,7 +254,7 @@ function Invoke-DogMap{
             #$Null = Node -Refresh
             # Import Session Info
             Dogfetch -ToComputer -Name "session_$Session" -InputObj $(Get-EmpireSession -Id $Session)
-            Get-EmpireConfig  -Id $Session | DogFetch -ToComputer -Name "session_$Session"
+            #Get-EmpireConfig  -Id $Session | DogFetch -ToComputer -Name "session_$Session"
             # Create Relationship
             EdgeCreate -UserToComputer -from (NodeSearch -User -Property empire -Value root) -to "session_$Session" -EdgeType HasControl
 
