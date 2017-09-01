@@ -1,0 +1,38 @@
+{
+    "queries": [
+        {
+            "name": "Empire - Map",
+            "requireNodeSelect": false,
+            "query": "MATCH (A:User) WHERE A.empire = {P1} WITH A MATCH x=(A)-[*1..4]->(B) RETURN x",
+            "allowCollapse": false,
+	    "props": {"P1": "root"}
+        },
+        {
+            "name": "Empire - Active",
+            "requireNodeSelect": false,
+            "query": "MATCH (A:Group) WHERE A.empire = {P1} WITH A MATCH x=(A)-[*1..2]->(B) RETURN x",
+            "allowCollapse": false,
+	    "props": {"P1": "listener"}
+        },
+        {
+            "name": "Empire - OneHop",
+            "requireNodeSelect": false,
+            "query": "MATCH (A:User) WHERE A.empire = {P1} WITH A MATCH x=(A)-[*1..5]->(B) RETURN x",
+            "allowCollapse": false,
+	    "props": {"P1": "root"}
+        },
+        {
+            "name": "Empire - Spider",
+            "requireNodeSelect": true,
+            "nodeSelectQuery":  {
+                "query":"MATCH (n) WHERE n.name =~ {name} RETURN n.name",
+                "queryProps": {"name":".*(?i).*"},
+                "onFinish": "MATCH p=((A:User {empire: 'root'})-[*1..4]->(B)) RETURN p UNION ALL MATCH p=allShortestPaths((A {name: {result}})<-[*1..]-(B:User {empire: 'agent'})) RETURN p",
+                "start":"",
+                "end": "{}",
+                "allowCollapse": false,
+                "boxTitle": "Select Node to target..."
+            }
+        }
+    ]
+}
