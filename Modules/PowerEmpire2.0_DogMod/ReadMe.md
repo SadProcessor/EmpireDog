@@ -1,3 +1,3 @@
 A PowerShell Module to interact with Empire via API
-Original code bu DarkOperator
+Original code by DarkOperator
 -> see pdf for more info
